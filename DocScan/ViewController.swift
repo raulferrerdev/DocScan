@@ -9,12 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private var scanButton = ScanButton(frame: .zero)
+    private var scanImageView = ScanImageView(frame: .zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        configure()
     }
 
-
+    
+    private func configure() {
+        view.addSubview(scanImageView)
+        view.addSubview(scanButton)
+        
+        NSLayoutConstraint.activate([
+            scanButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            scanButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            scanButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            scanButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            scanImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            scanImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            scanImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            scanImageView.bottomAnchor.constraint(equalTo: scanButton.topAnchor, constant: 16)
+        ])
+    }
 }
 
