@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VisionKit
 
 class ViewController: UIViewController {
     
@@ -35,6 +36,20 @@ class ViewController: UIViewController {
             scanImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             scanImageView.bottomAnchor.constraint(equalTo: scanButton.topAnchor, constant: 16)
         ])
+        
+        scanButton.addTarget(self, action: #selector(scanDocument), for: .touchUpInside)
     }
+    
+    
+    @objc private func scanDocument() {
+        let scanVC = VNDocumentCameraViewController()
+        scanVC.delegate = self
+        present(scanVC, animated: true)
+    }
+}
+
+
+extension ViewController: VNDocumentCameraViewControllerDelegate {
+    
 }
 
