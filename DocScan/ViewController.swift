@@ -7,22 +7,28 @@
 //
 
 import UIKit
+import Vision
 import VisionKit
 
 class ViewController: UIViewController {
     
     private var scanButton = ScanButton(frame: .zero)
     private var scanImageView = ScanImageView(frame: .zero)
-
+    private var ocrTextView = OcrTextView(frame: .zero, textContainer: nil)
+    private var ocrRequest = VNRecognizeTextRequest(completionHandler: nil)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
+        configureOCR()
     }
 
     
     private func configure() {
         view.addSubview(scanImageView)
+        view.addSubview(ocrTextView)
         view.addSubview(scanButton)
         
         let padding: CGFloat = 16
@@ -32,10 +38,15 @@ class ViewController: UIViewController {
             scanButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             scanButton.heightAnchor.constraint(equalToConstant: 50),
             
+            ocrTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
+            ocrTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
+            ocrTextView.bottomAnchor.constraint(equalTo: scanButton.topAnchor, constant: -padding),
+            ocrTextView.heightAnchor.constraint(equalToConstant: 200),
+            
             scanImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
             scanImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
             scanImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
-            scanImageView.bottomAnchor.constraint(equalTo: scanButton.topAnchor, constant: -padding)
+            scanImageView.bottomAnchor.constraint(equalTo: ocrTextView.topAnchor, constant: -padding)
         ])
         
         scanButton.addTarget(self, action: #selector(scanDocument), for: .touchUpInside)
@@ -47,6 +58,44 @@ class ViewController: UIViewController {
         scanVC.delegate = self
         present(scanVC, animated: true)
     }
+    
+    
+    private func processImage(_ image: UIImage) {
+        guard let cgImage = image.cgImage else { return }
+
+        ocrTextView.text = ""
+        scanButton.isEnabled = false
+        
+        let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        do {
+            try requestHandler.perform([self.ocrRequest])
+        } catch {
+            print(error)
+        }
+    }
+
+    
+    private func configureOCR() {
+        ocrRequest = VNRecognizeTextRequest { (request, error) in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+            
+            var ocrText = ""
+            for observation in observations {
+                guard let topCandidate = observation.topCandidates(1).first else { return }
+                
+                ocrText += topCandidate.string + "\n"
+            }
+            
+            
+            DispatchQueue.main.async {
+                self.ocrTextView.text = ocrText
+            }
+        }
+        
+        ocrRequest.recognitionLevel = .accurate
+        ocrRequest.recognitionLanguages = ["en-US", "en-GB"]
+        ocrRequest.usesLanguageCorrection = true
+    }
 }
 
 
@@ -56,6 +105,8 @@ extension ViewController: VNDocumentCameraViewControllerDelegate {
             controller.dismiss(animated: true)
             return
         }
+        
+        scanImageView.image = scan.imageOfPage(at: 0)
         
         controller.dismiss(animated: true)
     }

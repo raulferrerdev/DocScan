@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9450C651240E37E70003884C /* ScanImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9450C650240E37E70003884C /* ScanImageView.swift */; };
 		9450C653240E37FA0003884C /* ScanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9450C652240E37FA0003884C /* ScanButton.swift */; };
+		9457847C241298B3008A43CF /* OcrTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457847B241298B3008A43CF /* OcrTextView.swift */; };
 		946DD2AE2407F9AD00D1C793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946DD2AD2407F9AD00D1C793 /* AppDelegate.swift */; };
 		946DD2B02407F9AD00D1C793 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946DD2AF2407F9AD00D1C793 /* SceneDelegate.swift */; };
 		946DD2B22407F9AD00D1C793 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946DD2B12407F9AD00D1C793 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		9450C650240E37E70003884C /* ScanImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanImageView.swift; sourceTree = "<group>"; };
 		9450C652240E37FA0003884C /* ScanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButton.swift; sourceTree = "<group>"; };
+		9457847B241298B3008A43CF /* OcrTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrTextView.swift; sourceTree = "<group>"; };
 		946DD2AA2407F9AD00D1C793 /* DocScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		946DD2AD2407F9AD00D1C793 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		946DD2AF2407F9AD00D1C793 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				946DD2BB2407F9AF00D1C793 /* Info.plist */,
 				9450C650240E37E70003884C /* ScanImageView.swift */,
 				9450C652240E37FA0003884C /* ScanButton.swift */,
+				9457847B241298B3008A43CF /* OcrTextView.swift */,
 			);
 			path = DocScan;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				946DD2B22407F9AD00D1C793 /* ViewController.swift in Sources */,
 				9450C651240E37E70003884C /* ScanImageView.swift in Sources */,
 				946DD2AE2407F9AD00D1C793 /* AppDelegate.swift in Sources */,
+				9457847C241298B3008A43CF /* OcrTextView.swift in Sources */,
 				946DD2B02407F9AD00D1C793 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

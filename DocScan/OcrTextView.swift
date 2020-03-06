@@ -1,17 +1,18 @@
 //
-//  ScanImageView.swift
+//  OcrTextView.swift
 //  DocScan
 //
-//  Created by RaulF on 03/03/2020.
+//  Created by RaulF on 06/03/2020.
 //  Copyright © 2020 ImTech. All rights reserved.
 //
 
 import UIKit
 
-class ScanImageView: UIImageView {
+class OcrTextView: UITextView {
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: .zero, textContainer: textContainer)
+        
         configure()
     }
     
@@ -25,8 +26,6 @@ class ScanImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 7.0
         layer.borderWidth = 1.0
-        layer.borderColor = UIColor.systemIndigo.cgColor
-        backgroundColor = UIColor.init(white: 1.0, alpha: 0.1)
-        clipsToBounds = true
+        layer.borderColor = UIColor.systemTeal.cgColor        
     }
 }
