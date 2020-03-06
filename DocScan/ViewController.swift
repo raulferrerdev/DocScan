@@ -89,6 +89,7 @@ class ViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.ocrTextView.text = ocrText
+                self.scanButton.isEnabled = true
             }
         }
         
@@ -107,7 +108,7 @@ extension ViewController: VNDocumentCameraViewControllerDelegate {
         }
         
         scanImageView.image = scan.imageOfPage(at: 0)
-        
+        processImage(scan.imageOfPage(at: 0))
         controller.dismiss(animated: true)
     }
     

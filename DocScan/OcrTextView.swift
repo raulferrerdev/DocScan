@@ -26,6 +26,7 @@ class OcrTextView: UITextView {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 7.0
         layer.borderWidth = 1.0
-        layer.borderColor = UIColor.systemTeal.cgColor        
+        layer.borderColor = UIColor.systemTeal.cgColor
+        font = .systemFont(ofSize: 16.0)
     }
 }
